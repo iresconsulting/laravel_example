@@ -29,6 +29,11 @@ function httpRequest($api, $data_string) {
     return json_decode($result, true);
 }
 
+Route::middleware('RequestRedirect')->get('/', function (Request $request) {
+    return redirect(env('REQUEST_URL', 'https://forum-pi36r.ondigitalocean.app') . $request->path());
+});
+
+
 Route::get('/', function (Request $request) {
     return redirect(env('REQUEST_URL', 'https://forum-pi36r.ondigitalocean.app') . $request->path());
 });
